@@ -1,0 +1,15 @@
+No need to consider corner cases in this method. Just iterate though the list.
+If it sees a 9, set it to 0 and add 1 to the digit before it. If there are not enough digits, add one more leading digit.
+If it sees a number other than 9, just add 1 to that digit and return the list.
+
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        i = len(digits)-1
+        while i >= 0 and digits[i] == 9:
+            digits[i] = 0
+            i -= 1
+        if i >= 0:
+            digits[i] += 1
+            return digits
+        else:
+            return [1] + digits
