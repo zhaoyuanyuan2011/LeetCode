@@ -1,0 +1,17 @@
+Because the in-order traversal of a BST is increasing, we can imagine this sorted array to be an in-order traversal of a BST.
+
+Theoratically, if we do not need a balanced BST, then we can just make every element in the array a child of the element after it. 
+But this will make the tree a "line of tree nodes".
+
+Since the resulting BST needs to be balanced, the best way is to pick the middle element as the root, and then form a balanced BST recursively with its left part of the array and its right part. 
+In this way, we only need a base case and then do recursion on root's left and right children.
+
+class Solution:
+    def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
+        if len(nums) == 0:
+            return None
+        mid = (len(nums)-1)//2
+        root = TreeNode(nums[mid])
+        root.left = self.sortedArrayToBST(nums[:mid])
+        root.right = self.sortedArrayToBST(nums[mid+1:])
+        return root
