@@ -1,6 +1,8 @@
 Since we want max sum of a contiguous subarray, the defition of subproblem at position i should be:
 "the max sum of a subarray that ends at position i."
-With this defition, each value at position i only depends on the value at position i-1. So we can get rid of the dp array and just use a variable to keep track of the max sum it can achieve with a subarray ends at position i-1, then update both the max sum at position i for the next iteration and the ans so far.
+
+With this defition, each value at position i only depends on the value at position i-1. 
+So we can get rid of the dp array and just use a variable to keep track of the max sum it can achieve with a subarray ends at position i-1, then update both the max sum at position i for the next iteration and the ans so far.
 
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
