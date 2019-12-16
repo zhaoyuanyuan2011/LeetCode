@@ -1,0 +1,21 @@
+The basic idea is to iterate through the string and keep i and j tracking the longest substring with no duplicate that also ends at j.
+
+Every time j sees a new character, if it hasn't seen it before, we add the character and the character's index to the dictionary, so i can jump to this index+1 next time j sees this character again. 
+If j saw this character before, i needs to either jump to the position at "index"+1 where "index" is the latest position this character appears, or stay at the same position, whichever is further in the string because i cannot jump back (jumping back may result in repeating chars).
+
+Remember to update maxinum length i and j have seen so far no matter the current character has been seen or not, because i and j always keep track of a string with no duplicate, and it is safe to update the max length every time.
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        max_len = 0
+        i, j = 0, 0
+        d = {}
+        while j < len(s):
+            if s[j] not in d:
+                d[s[j]] = j
+            else:
+                i = max(i, d[s[j]]+1)
+                d[s[j]] = j
+            max_len = max(max_len, j-i+1)
+            j += 1
+        return max_len
