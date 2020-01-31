@@ -1,0 +1,9 @@
+Similar to a decimal number, for each digit in the given string, we update by multiply it with 26 (instead of 10) and add the current digit. 
+The current digit needs to be converted by the operation ord(char) - 64.
+
+class Solution:
+    def titleToNumber(self, s: str) -> int:
+        ret = 0
+        for char in s:
+            ret = 26 * ret + ord(char) - 64
+        return ret
