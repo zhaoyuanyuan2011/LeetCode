@@ -1,0 +1,11 @@
+Trailing zeros come from 10, and 10 comes from 2 x 5. There are always enough 2s.
+So the key is that we need to count how many 5 + how many 5 x 5 + how many 5 x 5 x 5...
+This can be done both interatively and recursively.
+
+class Solution:
+    def trailingZeroes(self, n: int) -> int:
+        ans = 0
+        while n > 0:
+            ans += n // 5
+            n //= 5
+        return ans
